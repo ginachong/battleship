@@ -50,6 +50,10 @@ const Score = styled.h1`
     display: block;
 `
 
+const Logout = styled.button`
+    
+`
+
 function PlaceShipsGrid(props) {
 
     function createGrid() {
@@ -80,6 +84,7 @@ function PlaceShipsGrid(props) {
                     </ButtonHolder>
                     <Score>Your Wins: {props.wins}</Score>
                     <Score>Your Losses: {props.losses}</Score>
+                    <Logout onClick={props.logout}>Logout</Logout>
                 </Container>
         )
     }

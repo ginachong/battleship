@@ -43,7 +43,7 @@ const WinLose = styled.h1`
 `
 
 const Logout = styled.button`
-
+    
 `
 
 class PlayingGrid extends React.Component {
@@ -240,7 +240,7 @@ componentDidMount(){
                 </Container>
                     <Score>Your Wins: {this.props.wins}</Score>
                     <Score>Your Losses: {this.props.losses}</Score>
-                    <Logout>Logout</Logout>
+                    <Logout onClick={this.props.logout}>Logout</Logout>
             </>
         )
     }

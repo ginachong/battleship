@@ -6,10 +6,10 @@ const SignUpContainer = styled.div`
   text-align: center;
 `
 
-export default function SignUpPage() {
+export default function SignUpPage(props) {
   return (
     <SignUpContainer>
-      <SignUpForm></SignUpForm>
+      <SignUpForm {...props}></SignUpForm>
     </SignUpContainer>
   )
 }

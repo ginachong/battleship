@@ -66,6 +66,7 @@ class SignUpForm extends React.Component {
                 this.props.history.push('/placeships')
             })
             .catch(err => {
+                console.log(err)
                 this.setState({errMsg: err.response.data.errMsg})
         })
     }

@@ -76,7 +76,7 @@ class DataProvider extends React.Component {
                 localStorage.setItem('user', JSON.stringify(response.data.user))
                 this.setState({user: response.data.user, token: response.data.token})
                 return response
-        })
+        }).catch(err => console.log(err))
     }
 
     login = userInfo => {
@@ -89,18 +89,32 @@ class DataProvider extends React.Component {
     }
 
     logout = () => {
+
+        this.updateUserScore(this.state.wins, this.state.losses)
         localStorage.removeItem('user')
         localStorage.removeItem('token')
+
+        const emptyGrid = []
+        for(let y = 0; y < this.state.playerShipsGrid.length; y++){
+                emptyGrid.push([])
+            for(let x = 0; x < this.state.playerShipsGrid[y].length; x++){
+                emptyGrid[y].push("white")
+            }
+            console.log(emptyGrid)
+        }
+
         this.setState({
             user: {},
             token: "",
             wins: 0,
             losses: 0,
+            playerShipsGrid: emptyGrid
         })
     }
 
     getUserScore = () => {
         scoreAxios.get('/api/score/').then(res => {
+            console.log(res.data)
             return this.setState({wins: res.data[0].wins, losses: res.data[0].losses})
         })
     }
@@ -109,8 +123,7 @@ class DataProvider extends React.Component {
         scoreAxios.put('api/score', {
             wins: newWins,
             losses: newLosses
-        }).then(res => this.setState({wins: res.data.wins, losses: res.data.losses}))
-
+        }).then(res => this.setState({wins: res.data[0].wins, losses: res.data[0].losses}))
     }
 
     placeShipsClick = (e) => {

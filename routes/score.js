@@ -8,6 +8,9 @@ scoreRouter.get('/', (req, res, next) => {
             res.status(500)
             return next(err)
         }
+        if(!score.length){
+            return res.send([{wins: 0, losses: 0}])
+        }
         return res.send(score)
     })
 })
