@@ -29,6 +29,7 @@ mongoose.connect("mongodb://localhost:27017/database",
 
 //connect to routes
 app.use('/auth', require('./routes/auth'))
+app.use('/api/score', require('./routes/score'))
 
 //error handler
 app.use((err, req, res, next) => {
@@ -37,7 +38,7 @@ app.use((err, req, res, next) => {
         // express-jwt gives the 401 status to the err object for us
         res.status(err.status);
     }
-    return res.send({ message: err.message });
+    return res.send({ errMsg: err.message });
 });
 
 app.listen(PORT, () => {

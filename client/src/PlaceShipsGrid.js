@@ -33,6 +33,23 @@ const Button = styled.button`
     margin: 10px;
 `
 
+const ShipContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+`
+
+const Ship = styled.div`
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    &:hover{cursor: pointer}
+`
+
+const Score = styled.h1`
+    display: block;
+`
+
 function PlaceShipsGrid(props) {
 
     function createGrid() {
@@ -40,7 +57,7 @@ function PlaceShipsGrid(props) {
 
         for(let y = 0; y < props.playerShipsGrid.length; y++){
             for(let x = 0; x < props.playerShipsGrid[y].length; x++){
-                gridBoxArray.push(<GridBoxes id={y + "." + x} style={props.playerShipsGrid[y][x] ? {backgroundColor: "black"} : {backgroundColor: "white"}} onClick={() => props.handleClick(y, x)} key={y + "." + x}></GridBoxes>)
+                gridBoxArray.push(<GridBoxes id={y + "." + x} style={{backgroundColor: [props.playerShipsGrid[y][x]]}} onClick={() => props.handleClick(y, x)} key={y + "." + x}></GridBoxes>)
             }
         }
         return gridBoxArray
@@ -51,9 +68,18 @@ function PlaceShipsGrid(props) {
                     <GridContainer>
                         {createGrid()}
                     </GridContainer>
+                    <ShipContainer>
+                        <Ship onClick={(e) => props.placeShipsClick(e)} id="ship1" style={props.currentShip === "ship1" ? {backgroundColor: "yellow"} : {backgroundColor: "white"}}>Place Ship 1</Ship>
+                        <Ship onClick={(e) => props.placeShipsClick(e)} id="ship2" style={props.currentShip === "ship2" ? {backgroundColor: "pink"} : {backgroundColor: "white"}}>Place Ship 2</Ship>
+                        <Ship onClick={(e) => props.placeShipsClick(e)} id="ship3" style={props.currentShip === "ship3" ? {backgroundColor: "green"} : {backgroundColor: "white"}}>Place Ship 3</Ship>
+                        <Ship onClick={(e) => props.placeShipsClick(e)} id="ship4" style={props.currentShip === "ship4" ? {backgroundColor: "orange"} : {backgroundColor: "white"}}>Place Ship 4</Ship>
+                        <Ship onClick={(e) => props.placeShipsClick(e)} id="ship5" style={props.currentShip === "ship5" ? {backgroundColor: "purple"} : {backgroundColor: "white"}}>Place Ship 5</Ship>
+                    </ShipContainer>
                     <ButtonHolder>
-                        <Button>Start Playing!</Button>
+                        <Button onClick={() => props.startPlaying()}>Start Playing!</Button>
                     </ButtonHolder>
+                    <Score>Your Wins: {props.wins}</Score>
+                    <Score>Your Losses: {props.losses}</Score>
                 </Container>
         )
     }
