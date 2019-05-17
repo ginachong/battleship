@@ -3,7 +3,7 @@
 //jwt: for creating tokens
 const express = require('express')
 const authRouter = express.Router()
-const User = require('../models/user')
+const User = require('../models/userSchema')
 const jwt = require('jsonwebtoken')
 
 //user signup
@@ -17,7 +17,7 @@ authRouter.post('/signup', (req, res, next) => {
         }
         if(user){
             res.status(500)
-            return next(new Error("That username already exists"))
+            return next(new Error("That username or password already exist"))
         }
     //if not, add user to database
         const newUser = new User(req.body)
@@ -35,7 +35,7 @@ authRouter.post('/signup', (req, res, next) => {
 })
 
 authRouter.post('/login', (req, res, next) => {
-    //find the user
+    console.log(req.body)
     User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
         if(err){
             res.status(500)
@@ -51,7 +51,7 @@ authRouter.post('/login', (req, res, next) => {
 
         if(!user){
             res.status(500)
-            return next(new Error("username or password are incorrect"))
+            return next(new Error("Username or password are incorrect"))
         }
 
         user.checkPassword(req.body.password, (err, isMatch) => {

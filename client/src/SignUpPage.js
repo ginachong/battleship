@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import SignUpForm from './SignUpForm'
 
-const NavContainer = styled.div`
-
+const SignUpContainer = styled.div`
+  text-align: center;
 `
 
-export default function NavBar() {
+export default function SignUpPage() {
   return (
-    <NavContainer>
-      
-    </NavContainer>
+    <SignUpContainer>
+      <SignUpForm></SignUpForm>
+    </SignUpContainer>
   )
 }
-
