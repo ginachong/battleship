@@ -12,6 +12,6 @@ TO PLAY:
 3. Submit your board and battle the computer.
 
 Currently working on:
-*improving user experience when placing ships (the length of each ship)
-*verifying that user's ship placement is adjacent
-*making the computer's counter attacks smart instead of random
+...*improving user experience when placing ships (the length of each ship)
+..*verifying that user's ship placement is adjacent
+..*making the computer's counter attacks smart instead of random
