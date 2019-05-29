@@ -11,6 +11,7 @@ TO PLAY:
 2. Choose where to place your ships. 
 3. Submit your board and battle the computer.
 
+This project is currently at MVP status, so there are still many components I'm working to improve. 
 Currently working on:
   * improving user experience when placing ships (the length of each ship)
   * verifying that user's ship placement is adjacent
